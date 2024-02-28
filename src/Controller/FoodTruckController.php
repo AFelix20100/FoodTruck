@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\FoodTruck;
 use App\Form\FoodTruckType;
 use App\Repository\FoodTruckRepository;
@@ -14,6 +15,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/foodtruck')]
 class FoodTruckController extends AbstractController
 {
+    private $entityManager;
+    
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/', name: 'app_food_truck_index', methods: ['GET'])]
     public function index(FoodTruckRepository $foodTruckRepository): Response
     {
@@ -45,8 +53,10 @@ class FoodTruckController extends AbstractController
     #[Route('/{id}', name: 'app_food_truck_show', methods: ['GET'])]
     public function show(FoodTruck $foodTruck): Response
     {
+        $categories = $this->entityManager->getRepository(Categorie::class)->findAll();
         return $this->render('food_truck/show.html.twig', [
             'food_truck' => $foodTruck,
+            'categories' => $categories,
         ]);
     }
 

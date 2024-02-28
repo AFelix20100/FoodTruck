@@ -3,32 +3,72 @@
 {% block title %}FoodTruck{% endblock %}
 
 {% block body %}
-    <h1>FoodTruck</h1>
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="h-25"
+                                src="{{asset("assets/img/chefs/chefs-1.jpg")}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mt-3">
+                    <div class="product__details__text">
+                        <h3>{{ food_truck.nom }}</h3>
+                        <p>{{ food_truck.description }}</p>
+                        <ul>
+                            <li><b>Téléphone :</b> <span>{{ food_truck.restaurateur.telephone }}</span></li>
+                            <li><b>N° Siret :</b> <span>{{ food_truck.restaurateur.siret }}</span></li>
+                            <li><b>A rejoint le </b><span>{{ food_truck.restaurateur.dateCreation | date("d/m/Y") }}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ======= Menu Section ======= -->
+                <section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <p>Jetez un oeil à la <span>carte !</span></p>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ food_truck.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ food_truck.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ food_truck.description }}</td>
-            </tr>
-            <tr>
-                <th>Img</th>
-                <td>{{ food_truck.img }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            {% for categorie in categories %}
+                <li class="nav-item">
+                   <a class="nav-link {% if loop.first %}active show{% endif %}" data-bs-toggle="tab" href="#{{ categorie.label | replace({' ': '-'}) }}">
+                        <h4>{{ categorie.label }}</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+            {% endfor %}
+        </ul>
 
-    <a href="{{ path('app_food_truck_index') }}">back to list</a>
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+            {% for categorie in categories %}
+                <div class="tab-pane fade {% if loop.first %}active show{% endif %}" id="{{ categorie.label | replace({' ': '-'}) }}">
+                    <div class="tab-header text-center">
+                        <p>Menu</p>
+                        <h3>{{ categorie.label }}</h3>
+                    </div>
 
-    <a href="{{ path('app_food_truck_edit', {'id': food_truck.id}) }}">edit</a>
+                    <div class="row gy-5">
+                        {% for plat in categorie.plats %}
+                            <div class="col-lg-4 menu-item">
+                                <a href="{{ asset('assets/img/menu/' ~ plat.img) }}" class="glightbox"><img src="{{ asset('assets/img/menu/menu-item-1.png') }}" class="menu-img img-fluid" alt=""></a>
+                                <h4>{{ plat.nom }}</h4>
+                                <p class="ingredients">{{ plat.description }}</p>
+                                <p class="price">{{ plat.prix }}</p>
+                            </div><!-- Menu Item -->
+                        {% endfor %}
+                    </div>
+                </div><!-- End Menu Content -->
+            {% endfor %}
+        </div>
+    </div>
+</section><!-- End Menu Section -->
 
-    {{ include('food_truck/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
 {% endblock %}
