@@ -48,3 +48,7 @@ when@prod:
                     adapter: cache.app
                 doctrine.system_cache_pool:
                     adapter: cache.system
+    fixtures:
+        order:
+            - 'App\DataFixtures\UtilisateursFixtures'
+            - 'App\DataFixtures\FoodTrucksFixtures'

@@ -15,6 +15,13 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/conditions-utilisations', name: 'app_cgu')]
+    public function cgu(): Response
+    {
+        return $this->render('home/cgu.html.twig', [
+        ]);
+    }
+
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
     {
