@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}FoodTruck by CCI | Réserver vos plats en ligne !{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <!-- Favicons -->
+        <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+        <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+        <!-- =======================================================
+        * Template Name: Yummy
+        * Updated: Jan 30 2024 with Bootstrap v5.3.2
+        * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+        
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+            <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center">
+            <div class="container d-flex align-items-center justify-content-between">
+
+            <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1>FoodTruck<span> by CCI</span></h1>
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#about">Foodtrucks</a></li>
+                    <li class="dropdown"><a href="#"><span>Plats</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                        <li><a href="#">Entrées</a></li>
+                        <li><a href="#">Plats principaux</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#chefs">Contact</a></li>
+                    <li><a href="#gallery">FAQ</a></li>
+                    <li><a class="btn-book-a-table btn-login" href="#">Commander</a></li>
+                </ul>
+            </nav>
+
+                <a class="btn" href="#"><i class="h4 bi bi-person-circle"></i> Mon Compte</a>
+                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+            </div>
+        </header><!-- End Header -->
+        <main id="main">
+        {% block body %}{% endblock %}
+        </main>
+          <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+
+            <div class="container">
+            <div class="row gy-3">
+                <div class="col-lg-3 col-md-6 d-flex">
+                <i class="bi bi-geo-alt icon"></i>
+                <div>
+                    <h4>Adresse</h4>
+                    <p>
+                    Campus CCI Eure-et-Loir <br>
+                    1 Av. Marcel Proust, <br>28000 Chartres<br>
+                    </p>
+                </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-telephone icon"></i>
+                <div>
+                    <h4>Assistance</h4>
+                    <p>
+                    <strong>Téléphone:</strong>  02 37 91 65 08<br>
+                    <strong>Email:</strong> contact@cci28.fr<br>
+                    </p>
+                </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-clock icon"></i>
+                <div>
+                    <h4>Horaires d'ouvertures</h4>
+                    <p>
+                    <strong>Lundi au Vendredi: </strong>12h00 - 14h00<br>
+                    </p>
+                </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                <h4>Suivez-nous !</h4>
+                <div class="social-links d-flex">
+                    <a href="https://www.campuscci.fr/" class="twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.campuscci.fr/" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.campuscci.fr/" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.campuscci.fr/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+                </div>
+
+            </div>
+            </div>
+
+            <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>ARTHUR Félix-Vincent</span></strong>. All Rights Reserved
+            </div>
+            </div>
+
+        </footer><!-- End Footer -->
+        <!-- End Footer -->
+
+        <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <div id="preloader"></div>
+
+        <!-- Vendor JS Files -->
+        <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+        <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+        <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+
+        <!-- Template Main JS File -->
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+    </body>
+</html>
