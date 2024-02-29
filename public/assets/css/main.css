@@ -293,6 +293,12 @@ section {
   transition: 0.3s;
 }
 
+.btn-login{
+  padding: 10px 20px 10px 20px !important;
+  margin-left: auto !important;
+  justify-content: center;
+}
+
 .header .btn-book-a-table:hover,
 .header .btn-book-a-table:focus:hover {
   color: #fff;
@@ -559,6 +565,13 @@ section {
     inset: 0;
     background: rgba(255, 255, 255, 0.8);
     z-index: 9996;
+  }
+
+  .navbar .btn-login {
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    
   }
 }
 
@@ -1651,3 +1664,5 @@ section {
 .footer .credits a {
   color: #fff;
 }
+
+

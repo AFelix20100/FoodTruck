@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+<!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs section-bg mt-5">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Mon compte</h2>
+        </div>
+        <section style="background-color: #eee;padding-top: 0px;">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <div class="card-body text-center">
+                                <img src="{{asset("assets/img/avatar.svg")}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                <div class="d-flex justify-content-center mb-2 mt-2">
+                                    <button type="button" class="btn btn-warning">Modifier</button>
+                                    <button type="button" class="btn btn-danger ms-1">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">example@example.com</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Téléphone</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">(097) 234-5678</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Validité du compte</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0 disabled" style="color:green!important">Valide</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-header">
+                        <p>Mes<span> Commandes</span></p>
+                    </div>
+                    <div class="col-12">
+                        <table id="myTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>FoodTruck</th>
+                                    <th></th>
+                                    <th>FoodTruck</th>
+                                    <th>FoodTruck</th>
+                                    <th>Column 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Row 1 Data 1</td>
+                                    <td>Row 1 Data 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 2 Data 1</td>
+                                    <td>Row 2 Data 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section><!-- End Chefs Section -->
+
+{% endblock %}

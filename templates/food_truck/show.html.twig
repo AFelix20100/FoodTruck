@@ -28,43 +28,43 @@
                 </div>
                 <!-- ======= Menu Section ======= -->
                 <section id="menu" class="menu">
-    <div class="container" data-aos="fade-up">
-        <div class="section-header">
-            <p>Jetez un oeil à la <span>carte !</span></p>
-        </div>
+                    <div class="container" data-aos="fade-up">
+                        <div class="section-header">
+                            <p>Jetez un oeil à la <span>carte !</span></p>
+                        </div>
 
-        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-            {% for categorie in categories %}
-                <li class="nav-item">
-                   <a class="nav-link {% if loop.first %}active show{% endif %}" data-bs-toggle="tab" href="#{{ categorie.label | replace({' ': '-'}) }}">
-                        <h4>{{ categorie.label }}</h4>
-                    </a>
-                </li><!-- End tab nav item -->
-            {% endfor %}
-        </ul>
+                        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                            {% for categorie in categories %}
+                                <li class="nav-item">
+                                <a class="nav-link {% if loop.first %}active show{% endif %}" data-bs-toggle="tab" href="#{{ categorie.label | replace({' ': '-'}) }}">
+                                        <h4>{{ categorie.label }}</h4>
+                                    </a>
+                                </li><!-- End tab nav item -->
+                            {% endfor %}
+                        </ul>
 
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-            {% for categorie in categories %}
-                <div class="tab-pane fade {% if loop.first %}active show{% endif %}" id="{{ categorie.label | replace({' ': '-'}) }}">
-                    <div class="tab-header text-center">
-                        <p>Menu</p>
-                        <h3>{{ categorie.label }}</h3>
+                        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+                            {% for categorie in categories %}
+                                <div class="tab-pane fade {% if loop.first %}active show{% endif %}" id="{{ categorie.label | replace({' ': '-'}) }}">
+                                    <div class="tab-header text-center">
+                                        <p>Menu</p>
+                                        <h3>{{ categorie.label }}</h3>
+                                    </div>
+
+                                    <div class="row gy-5">
+                                        {% for plat in categorie.plats %}
+                                            <div class="col-lg-4 menu-item">
+                                                <a href="{{ asset('assets/img/menu/' ~ plat.img) }}" class="glightbox"><img src="{{ asset('assets/img/menu/menu-item-1.png') }}" class="menu-img img-fluid" alt=""></a>
+                                                <h4>{{ plat.nom }}</h4>
+                                                <p class="ingredients">{{ plat.description }}</p>
+                                                <p class="price">{{ plat.prix }}</p>
+                                            </div><!-- Menu Item -->
+                                        {% endfor %}
+                                    </div>
+                                </div><!-- End Menu Content -->
+                            {% endfor %}
+                        </div>
                     </div>
-
-                    <div class="row gy-5">
-                        {% for plat in categorie.plats %}
-                            <div class="col-lg-4 menu-item">
-                                <a href="{{ asset('assets/img/menu/' ~ plat.img) }}" class="glightbox"><img src="{{ asset('assets/img/menu/menu-item-1.png') }}" class="menu-img img-fluid" alt=""></a>
-                                <h4>{{ plat.nom }}</h4>
-                                <p class="ingredients">{{ plat.description }}</p>
-                                <p class="price">{{ plat.prix }}</p>
-                            </div><!-- Menu Item -->
-                        {% endfor %}
-                    </div>
-                </div><!-- End Menu Content -->
-            {% endfor %}
-        </div>
-    </div>
 </section><!-- End Menu Section -->
 
             </div>
