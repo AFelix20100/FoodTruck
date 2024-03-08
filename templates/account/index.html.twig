@@ -34,7 +34,7 @@
                                         <p class="text-muted mb-0">{{app.user.email}}</p>
                                     </div>
                                 </div>
-                                {% if app.user.telephone and is_granted('ROLE_RESTAURATEUR')%}
+                                {% if app.user.foodTruck is not null and is_granted('ROLE_RESTAURATEUR')%}
                                 <hr>
                                     <div class="row">
                                         <div class="col-sm-3">

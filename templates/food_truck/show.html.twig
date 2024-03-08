@@ -20,8 +20,8 @@
                         <h3>{{ food_truck.nom }}</h3>
                         <p>{{ food_truck.description }}</p>
                         <ul>
-                            <li><b>Téléphone :</b> <span>{{ food_truck.restaurateur.telephone }}</span></li>
-                            <li><b>N° Siret :</b> <span>{{ food_truck.restaurateur.siret }}</span></li>
+                            <li><b>Téléphone :</b> <span>{{ food_truck.telephone }}</span></li>
+                            <li><b>N° Siret :</b> <span>{{ food_truck.siret }}</span></li>
                             <li><b>A rejoint le </b><span>{{ food_truck.restaurateur.dateCreation | date("d/m/Y") }}</span></li>
                         </ul>
                     </div>
