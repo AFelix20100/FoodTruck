@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -11,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
 class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -34,12 +36,6 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $telephone = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $siret = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
 
@@ -48,6 +44,17 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(inversedBy: 'restaurateur', cascade: ['persist', 'remove'])]
     private ?FoodTruck $foodTruck = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pseudo = null;
+
+    #[ORM\OneToMany(targetEntity: Prevoir::class, mappedBy: 'utilisateur', orphanRemoval: true)]
+    private Collection $prevoirs;
+
+    public function __construct()
+    {
+        $this->prevoirs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,31 +130,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): static
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getSiret(): ?string
-    {
-        return $this->siret;
-    }
-
-    public function setSiret(?string $siret): static
-    {
-        $this->siret = $siret;
-
-        return $this;
-    }
-
+    
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
@@ -192,6 +175,48 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFoodTruck(?FoodTruck $foodTruck): static
     {
         $this->foodTruck = $foodTruck;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Prevoir>
+     */
+    public function getPrevoirs(): Collection
+    {
+        return $this->prevoirs;
+    }
+
+    public function addPrevoir(Prevoir $prevoir): static
+    {
+        if (!$this->prevoirs->contains($prevoir)) {
+            $this->prevoirs->add($prevoir);
+            $prevoir->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrevoir(Prevoir $prevoir): static
+    {
+        if ($this->prevoirs->removeElement($prevoir)) {
+            // set the owning side to null (unless already changed)
+            if ($prevoir->getUtilisateur() === $this) {
+                $prevoir->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

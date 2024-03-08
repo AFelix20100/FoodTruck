@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlatsRepository::class)]
@@ -28,6 +30,14 @@ class Plats
     #[ORM\ManyToOne(inversedBy: 'plats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
+
+    #[ORM\OneToMany(targetEntity: Prevoir::class, mappedBy: 'plats', orphanRemoval: true)]
+    private Collection $prevoirs;
+
+    public function __construct()
+    {
+        $this->prevoirs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +100,36 @@ class Plats
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Prevoir>
+     */
+    public function getPrevoirs(): Collection
+    {
+        return $this->prevoirs;
+    }
+
+    public function addPrevoir(Prevoir $prevoir): static
+    {
+        if (!$this->prevoirs->contains($prevoir)) {
+            $this->prevoirs->add($prevoir);
+            $prevoir->setPlats($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrevoir(Prevoir $prevoir): static
+    {
+        if ($this->prevoirs->removeElement($prevoir)) {
+            // set the owning side to null (unless already changed)
+            if ($prevoir->getPlats() === $this) {
+                $prevoir->setPlats(null);
+            }
+        }
 
         return $this;
     }

@@ -25,6 +25,12 @@ class FoodTruck
     #[ORM\OneToOne(mappedBy: 'foodTruck', cascade: ['persist', 'remove'])]
     private ?Utilisateurs $restaurateur = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $telephone = null;
+
+    #[ORM\Column(length: 14)]
+    private ?string $siret = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,6 +90,30 @@ class FoodTruck
         }
 
         $this->restaurateur = $restaurateur;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(string $siret): static
+    {
+        $this->siret = $siret;
 
         return $this;
     }

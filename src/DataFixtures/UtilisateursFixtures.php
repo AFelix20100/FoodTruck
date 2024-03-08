@@ -27,6 +27,7 @@ class UtilisateursFixtures extends Fixture
         $admin->setPassword($this->passwordHasher->hashPassword($admin, 'adminpassword'));
         $admin->setDateCreation(new DateTime());
         $admin->setDateModification(new DateTime());
+        $admin->setPseudo("Admin");
         $manager->persist($admin);
 
         // Création d'un utilisateur régulier
@@ -36,6 +37,7 @@ class UtilisateursFixtures extends Fixture
         $user->setPassword($this->passwordHasher->hashPassword($user, 'userpassword'));
         $user->setDateCreation(new DateTime());
         $user->setDateModification(new DateTime());
+        $admin->setPseudo("User");
         $manager->persist($user);
 
         // Création d'un utilisateur restaurateur
@@ -43,10 +45,9 @@ class UtilisateursFixtures extends Fixture
         $restaurateur->setEmail('restaurateur@gmail.com');
         $restaurateur->setRoles(['ROLE_RESTAURATEUR']);
         $restaurateur->setPassword($this->passwordHasher->hashPassword($restaurateur, 'userpassword'));
-        $restaurateur->setTelephone("0785964525");
-        $restaurateur->setSiret("WDT54S4EFS484");
         $restaurateur->setDateCreation(new DateTime());
         $restaurateur->setDateModification(new DateTime());
+        $admin->setPseudo("Resto");
         $manager->persist($restaurateur);
 
         $manager->flush();
