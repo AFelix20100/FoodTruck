@@ -35,7 +35,8 @@
         {% block stylesheets %}
         {% endblock %}
 
-        {% block javascripts %}
+        {% block javascripts %}
+
         {% endblock %}
     </head>
     <body>
@@ -72,7 +73,10 @@
                             <i class="h4 bi bi-person-circle"></i> Mon Compte
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="btn btn-white dropdown-item" href="{{path("app_account", {id: app.user.id})}}"><i class="bi bi-person-vcard"></i> Profil</a></li>
+                            <li><a class="btn btn-white dropdown-item" href="{{path("app_account", {id: app.user.id})}}"><i class="bi bi-person-vcard-fill"></i> Profil</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a class="btn btn-white dropdown-item" href="{{path("app_admin_index")}}"><i class="bi bi-gear-fill"></i> Dashboard</a></li>
+                            {% endif %}
                             <li><a class="btn btn-white dropdown-item" href="{{ path("app_logout") }}"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a></li>
                         </ul>
                     </div>

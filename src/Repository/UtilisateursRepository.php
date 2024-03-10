@@ -39,6 +39,20 @@ class UtilisateursRepository extends ServiceEntityRepository implements Password
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+    public function findByRole($role)
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb
+            ->andWhere($qb->expr()->like('u.roles', ':role'))
+            ->setParameter('role', '%'.$role.'%');
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
     //    /**
     //     * @return Utilisateurs[] Returns an array of Utilisateurs objects
