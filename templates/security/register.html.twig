@@ -1,41 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FoodTruck by CCI | Inscription{% endblock %}
+{% block title %}FoodTruck by CCI | Inscription
+{% endblock %}
 
 
 {% block body %}
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact mt-5">
-        <div class="container" data-aos="fade-up">
-            <div class="section-header">
-                <h2>Inscription</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-xl-5 col-sm-12">
-                    <form method="post" class="php-email-form p-3 p-md-4">
-                        {{ form_start(form) }}
-                        <div class="row">
-                            <div class="col form-group">
-                                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email', 'autocomplete': 'email', 'required': 'required', 'autofocus': 'autofocus'}}) }}
-                            </div>
+	<!-- ======= Contact Section ======= -->
+	<section id="contact" class="contact mt-5">
+		<div class="container" data-aos="fade-up">
+			<div class="section-header">
+				<h2>Inscription</h2>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 col-xl-5 col-sm-12">
+					<form method="post" class="php-email-form p-3 p-md-4">
+
+						{{ form_start(form) }}
+						
+						
+
+						<div class="form-check">
+							{{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input', 'id': 'agreeTerms'}}) }}
+							{{ form_label(form.agreeTerms, 'En utilisant notre service, vous acceptez les <a href="' ~ path('app_cgu') ~ '">conditions générales d\'utilisation</a>', {'label_attr': {'class': 'form-check-label'}, 'label_html': true} | raw) }}
                         </div>
-                        <div class="row">
-                            <div class="col form-group">
-                                {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe', 'autocomplete': 'new-password', 'required': 'required'}}) }}
-                            </div>
-                        </div>
-                            <div class="form-check">
-                                {{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input', 'id': 'agreeTerms'}}) }}
-                                {{ form_label(form.agreeTerms, 'En utilisant notre service, vous acceptez les <a href="' ~ path('app_cgu') ~ '">conditions générales d\'utilisation</a>', {'label_attr': {'class': 'form-check-label'}, 'label_html': true} | raw) }}
-                            </div>
 
                         <div class="text-center">
                             <button type="submit">S'inscrire</button>
                         </div>
                         {{ form_end(form) }}
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section><!-- End Contact Section -->
-{% endblock %}
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Contact Section -->
+	{% endblock %}
