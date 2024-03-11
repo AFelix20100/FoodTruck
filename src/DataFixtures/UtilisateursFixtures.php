@@ -23,7 +23,7 @@ class UtilisateursFixtures extends Fixture
         // Création d'un utilisateur administrateur
         $admin = new Utilisateurs();
         $admin->setEmail('admin@gmail.com');
-        $admin->setRoles(array('ROLE_ADMIN', 'ROLE_USER'));
+        $admin->setRoles(array('ROLE_ADMIN'));
         $admin->setPassword($this->passwordHasher->hashPassword($admin, 'adminpassword'));
         $admin->setDateCreation(new DateTime());
         $admin->setDateModification(new DateTime());
@@ -33,7 +33,7 @@ class UtilisateursFixtures extends Fixture
         // Création d'un utilisateur régulier
         $user = new Utilisateurs();
         $user->setEmail('user@gmail.com');
-        $user->setRoles(array('ROLE_USER'));
+        $user->setRoles(array('ROLE_CLIENT'));
         $user->setPassword($this->passwordHasher->hashPassword($user, 'userpassword'));
         $user->setDateCreation(new DateTime());
         $user->setDateModification(new DateTime());

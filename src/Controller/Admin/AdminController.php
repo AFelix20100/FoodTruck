@@ -1,51 +1,27 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Entity\Utilisateurs;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-use function PHPUnit\Framework\isJson;
-
 #[IsGranted('ROLE_ADMIN', message: 'Pas le droit ! Tire toi de là !')]
-#[Route('/admin/utilisateurs')]
-class AdminUtilisateursController extends AbstractController
+#[Route('/admin')]
+class AdminController extends AbstractController
 {
-    private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     #[IsGranted('ROLE_ADMIN', message: 'Pas le droit ! Tire toi de là !')]
-    #[Route('/clients', name: 'app_admin_clients')]
+    #[Route('/', name: 'app_admin_index')]
     public function index(): Response
     {
-        $clients = $this->entityManager->getRepository(Utilisateurs::class)->findClients();
-        return $this->render('admin/index.html.twig',[
-            "clients" => $clients]
-        );
+        return $this->render('admin/index.html.twig');
     }
 
-    #[Route('/restaurateurs', name: 'app_admin_restaurateurs')]
+    #[Route('/foodtrucks', name: 'app_admin_foodtrucks')]
     public function foodtrucks(): Response
     {
-        // $restaurants = $this->entityManager->getRepository(Utilisateurs::class)->findBy(["roles" => array("ROLE_RESTAURATEUR")]);
-        $restaurants = $this->entityManager->getRepository(Utilisateurs::class)->findByRole("ROLE_ADMIN");
-        dd($restaurants);
         return $this->render('admin/foodtrucks.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
-    }
-
-    #[Route('/personnel', name: 'app_admin_personnel')]
-    public function users(): Response
-    {
-        return $this->render('admin/utilisateurs.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }

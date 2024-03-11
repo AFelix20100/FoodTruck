@@ -1,0 +1,53 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}FoodTruck by CCI | Administration{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des clients</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered myTable text-center" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>MAIL</th>
+                            <th>PSEUDO</th>
+                            <th>REJOINT LE</th>
+                            <th>DERNIÈRE MODIFICATION</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for restaurateur in restaurateurs %}
+                            <tr>
+                                <td>{{ restaurateur.id }}</td>
+                                <td>{{ restaurateur.email }}</td>
+                                <td>{{ restaurateur.pseudo }}</td>
+                                <td>{{ restaurateur.dateCreation | date("d/m/Y") }}</td>
+                                <td>{{ restaurateur.dateModification | date("d/m/Y") }}</td>
+                                <td class="text-wrap">
+                                    <div class="d-flex justify-content-around">
+                                        <!-- Bouton de suppression -->
+                                        <form action="{{ path('app_admin_supprimer_utilisateur', {'type': 'restaurateur', 'id': restaurateur.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt"></i> Supprimer
+                                            </button>
+                                        </form>
+
+                                        <!-- Bouton de modification -->
+                                        <a href="{{ path('app_home', {'id': restaurateur.id}) }}" class="btn btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                            Modifier</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

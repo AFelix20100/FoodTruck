@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    var table = $('#myTable').DataTable({
+    var table = $('.myTable').DataTable({
+        // dom: 'Bfrtip',
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
         language: {
             "sProcessing":     "Traitement en cours...",
             "sSearch":         "Rechercher&nbsp;:",
@@ -13,7 +16,7 @@ $(document).ready(function() {
             "sEmptyTable":     "Aucune donnée disponible dans le tableau",
             "oPaginate": {
                 "sFirst":      "Premier",
-                "sPrevious":   "Pr&eacute;c&eacute;dent",
+                "sPrevious":   "Précédent",
                 "sNext":       "Suivant",
                 "sLast":       "Dernier"
             },
@@ -28,8 +31,6 @@ $(document).ready(function() {
                     "1": "1 ligne sélectionnée"
                 }    
             }
-        },
-        // Autres options de configuration de DataTable
-        // ...
+        }
     });
 });
